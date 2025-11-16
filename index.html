@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход и Регистрация</title>
+    <style>
+        
+@media (max-width: 768px) {
+    .mobile-hide {
+        display: none;
+    }
+}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background:  #addaf8 0%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            max-width: 900px;
+            width: 100%;
+            background: rgb(255, 255, 255);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }              
+        
+        
+        .form-section {
+            flex: 1;
+            padding: 60px 40px;
+        }
+
+        .form-container {
+            max-width: 350px;
+            margin: 0 auto;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #eeeeee;
+        }
+
+        .tab {
+            padding: 15px 30px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab.active {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .form {
+            display: none;
+        }
+
+        .form.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        
+        
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e1e1;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .remember input {
+            width: auto;
+        }
+
+        .forgot {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .forgot:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #a0b0f5 0%, #4b74a2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .social-login {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .social-login p {
+            color: #666;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        
+
+        .social-login p::before {
+            left: 0;
+        }
+
+        .social-login p::after {
+            right: 0;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e1e1e1;
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+        }
+
+        .social-btn:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            
+           
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Левая часть с приветствием -->
+          <img src="image.png" class="mobile-hide">
+        <div class="welcome-section"> 
+           
+        </div>
+         
+        
+        <!-- Правая часть с формами -->
+        <div class="form-section">
+            <div class="form-container">
+                <!-- Переключение между формами -->
+                <div class="tabs">
+                    <div class="tab active" onclick="showForm('login')">Вход</div>
+                    <div class="tab" onclick="showForm('register')">Регистрация</div>
+                </div>
+
+                <!-- Форма входа -->
+                <div id="login-form" class="form active">
+                    <h2>Войти в аккаунт</h2>
+                   
+
+                    <form>
+                        <div class="form-group">
+                            <label for="login-email">Email</label>
+                            <input type="email" id="login-email" placeholder="Введите ваш email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="login-password">Пароль</label>
+                            <input type="password" id="login-password" placeholder="Введите ваш пароль" required>
+                        </div>
+
+                        <div class="remember-forgot">
+                            <div class="remember">
+                                <input type="checkbox" id="remember">
+                                <label for="remember">Запомнить меня</label>
+                            </div>
+                            <a href="#" class="forgot">Забыли пароль?</a>
+                        </div>
+
+                        <button type="submit" class="btn">Войти</button>
+                    </form>
+
+                    <div class="social-login">
+                        
+                    </div>
+                </div>
+
+                <!-- Форма регистрации -->
+                <div id="register-form" class="form">
+                    <h2>Создать аккаунт</h2>
+                    
+
+                    <form>
+                        <div class="form-group">
+                            <label for="register-name">Имя</label>
+                            <input type="text" id="register-name" placeholder="Введите ваше имя" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="register-email">Email</label>
+                            <input type="email" id="register-email" placeholder="Введите ваш email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="register-password">Пароль</label>
+                            <input type="password" id="register-password" placeholder="Создайте пароль" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="register-confirm-password">Подтвердите пароль</label>
+                            <input type="password" id="register-confirm-password" placeholder="Повторите пароль" required>
+                        </div>
+
+                        <button type="submit" class="btn">Зарегистрироваться</button>
+                    </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showForm(formType) {
+            // Скрыть все формы
+            document.querySelectorAll('.form').forEach(form => {
+                form.classList.remove('active');
+            });
+
+            // Убрать активный класс со всех вкладок
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Показать выбранную форму
+            document.getElementById(formType + '-form').classList.add('active');
+
+            // Сделать активной выбранную вкладку
+            event.target.classList.add('active');
+        }
+
+        // Обработка отправки форм
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (this.closest('#login-form')) {
+                    // Обработка входа
+                    const email = document.getElementById('login-email').value;
+                    const password = document.getElementById('login-password').value;
+                    console.log('Вход:', { email, password });
+                    alert('Вход выполнен успешно!');
+                } else {
+                    // Обработка регистрации
+                    const name = document.getElementById('register-name').value;
+                    const email = document.getElementById('register-email').value;
+                    const password = document.getElementById('register-password').value;
+                    const confirmPassword = document.getElementById('register-confirm-password').value;
+                    
+                    if (password !== confirmPassword) {
+                        alert('Пароли не совпадают!');
+                        return;
+                    }
+                    
+                    console.log('Регистрация:', { name, email, password });
+                    alert('Регистрация выполнена успешно!');
+                }
+            });
+        });
+
+       
+    </script>
+</body>
+</html>
+
